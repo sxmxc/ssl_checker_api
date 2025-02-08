@@ -23,45 +23,6 @@ SSL Checker API is a simple FastAPI-based service that provides SSL certificate 
 - **JSON Response**: Structured output for seamless integration with other applications.  
 
 
-## Endpoints  
-
-### Health Check  
-
-**GET `/ping`**  
-Returns a basic health check response to confirm the API is operational.  
-
-#### Response:
-```json
-{
-  "dang_ol": "pong",
-  "server_timestamp": "2025-02-08T12:00:00.000000",
-  "status": "ok"
-}
-```
-
-### SSL Certificate Check
-
-**GET `/check/{host}`**
-Fetches SSL certificate details for the given host.
-**Parameters:**
-- `host` (string, required): The domain name of the URL to check
-
-#### Response:
-```json
-{
-  "api-version": "1.0",
-  "app": "ssl-checker-api",
-  "host": "example.com",
-  "status": "ok",
-  "result": {
-    "issuer": "Let's Encrypt",
-    "valid_from": "2025-01-01",
-    "valid_to": "2025-04-01",
-    "days_remaining": 52,
-    "status": "valid"
-  }
-}
-```
 ## Installation
 
 **1. Clone the repository**
@@ -85,6 +46,75 @@ Fetches SSL certificate details for the given host.
 - Open http://localhost:8000/docs for interactive Swagger UI.
 - Open http://localhost:8000/redoc for ReDoc API documentation.
     
+## Deployment
+
+To run as a docker container:
+
+**Build locally**
+```bash
+  git clone https://github.com/sxmxc/ssl-checker-api.git  
+  cd ssl-checker-api  
+  docker build -t <image name>:<tag> .
+  docker run -d --name ssl_checker_api -p 8000:8000 <image name>:<tag>
+```
+
+**Via DockerHub**
+```bash
+  docker run -d --name ssl_checker_api -p 8000:8000 sxmxc/ssl_checker_api
+```
+
+## Endpoints  
+
+### Health Check  
+
+**GET `/ping`**  
+Returns a basic health check response to confirm the API is operational.  
+
+#### Response:
+```json
+{
+  "dang_ol": "pong",
+  "server_timestamp": "2025-02-08T12:00:00.000000",
+  "status": "ok"
+}
+```
+
+### SSL Certificate Check
+
+**GET `/check/{host}`**
+Fetches SSL certificate details for the given host.
+
+**Parameters:**
+- `host` (string, required): The domain name of the URL to check
+
+#### Response:
+```json
+{
+  "api-version": "1",
+  "app": "ssl-checker-api",
+  "host": "example.com",
+  "status": "ok",
+  "result": {
+    "issuer": "Let's Encrypt",
+    "valid_from": "2025-01-01",
+    "valid_to": "2025-04-01",
+    "days_remaining": 52,
+    "status": "valid"
+  }
+}
+```
+## Environment Variables
+
+The following environment variables can be used:
+
+| **Variable** | **Default**       | **Description**
+|------------------|-------------------|-------------------|
+| `API_NAME`         | "SSL Checker API" | Name of the API |
+| `API_HOST`         | "0.0.0.0"         | IP to listen on |
+| `API_PORT`         | 8000              | Port to listen on |
+| `API_VERSION`      | "1"               | API version |
+
+
 ## License
 
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
