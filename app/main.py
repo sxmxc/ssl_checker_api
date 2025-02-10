@@ -8,12 +8,13 @@ from pydantic import BaseModel, JsonValue
 from config import settings
 
 app = FastAPI(
-    root_path="/api/v{0}".format(settings.api_version),
+    root_path=f"/api/{settings.api_version}",
     title=settings.api_name,
     license_info={
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
-    })
+    }
+)
 ssl_checker = SSLChecker()
 
 class PingResponse(BaseModel):
@@ -22,36 +23,33 @@ class PingResponse(BaseModel):
     status: str
 
 class CheckResponse(BaseModel):
-    api_version: str = "1.0"
-    app: str = "ssl-checker-api"
+    api_version: str = settings.api_version
+    app: str = settings.api_name
     host: str = "example.com"
     status: str = "ok"
     result: JsonValue = {}
 
 @app.get("/ping", summary="Health check")
 def read_root() -> PingResponse:
-    result = PingResponse(dang_ol="pong", server_timestamp=datetime.now(),status="ok")
+    result = PingResponse(dang_ol="pong", server_timestamp=datetime.now(), status="ok")
     return result
 
-
 @app.get("/check/{host:path}", summary="Checks SSL of a URL", response_model=CheckResponse)
-async def check(host: Annotated[str, Path(title="The URL of the host")]) -> Any:
+async def check(host: Annotated[str, Path(title="The URL of the host")]) -> CheckResponse:
     """
-    Check the hosts SSL certificate:
+    Check the host's SSL certificate:
 
     - **host**: The URL of the host
     """
-    args = ssl_checker.get_args({
-        'hosts': [host]
-        })
+    args = ssl_checker.get_args({'hosts': [host]})
     result = json.loads(ssl_checker.show_result(args))
-    response = {
-        "api-version": settings.api_version,
-        "app": "ssl-checker-api",
-        "host": host,
-        "status": "ok",
-        "result": result[host]
-    }
+    response = CheckResponse(
+        api_version=settings.api_version,
+        app=settings.api_name,
+        host=host,
+        status="ok",
+        result=result[host]
+    )
     return response
 
 if __name__ == "__main__":

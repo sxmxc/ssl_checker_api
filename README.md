@@ -115,6 +115,8 @@ Fetches SSL certificate details for the given host.
 
 ## Environment Variables
 
+An example ```.env``` can be viewed at ```.env.example``
+
 The following environment variables can be used:
 
 | **Variable** | **Default**       | **Description**
@@ -122,7 +124,7 @@ The following environment variables can be used:
 | `API_NAME`         | "SSL Checker API" | Name of the API
 | `API_HOST`         | "0.0.0.0"         | IP to listen on
 | `API_PORT`         | 8000              | Port to listen on
-| `API_VERSION`      | "1"               | API version
+| `API_VERSION`      | "v1"               | API version
 
 ## License
 

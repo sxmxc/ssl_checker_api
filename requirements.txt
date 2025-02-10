@@ -4,3 +4,4 @@ pyopenssl
 json2html
 python-ssl-checker
 pydantic_settings
+python-dotenv
