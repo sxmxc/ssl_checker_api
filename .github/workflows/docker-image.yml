@@ -37,6 +37,7 @@ jobs:
           echo "Build Number: $BUILD_NUMBER"
           
   docker:
+    environment: default
     needs: set-version
     runs-on: ubuntu-latest
     steps:
