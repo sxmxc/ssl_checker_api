@@ -9,6 +9,8 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009485.svg?logo=fastapi&logoColor=white)](#)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
 
+[![Docker Image CI](https://github.com/sxmxc/ssl_checker_api/actions/workflows/docker-image.yml/badge.svg)](https://github.com/sxmxc/ssl_checker_api/actions/workflows/docker-image.yml)
+
 
 # SSL Checker API
 
