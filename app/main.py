@@ -5,10 +5,10 @@ from typing import Annotated, Any
 from fastapi import FastAPI, Path
 from ssl_checker import SSLChecker
 from pydantic import BaseModel, JsonValue
-from config import settings
+from app.config import settings
 
 app = FastAPI(
-    root_path=f"/api/{settings.api_version}",
+    root_path=f"/api/v1",
     title=settings.api_name,
     license_info={
         "name": "Apache 2.0",
