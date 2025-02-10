@@ -2,9 +2,11 @@
 [![Apache 2.0 License](https://img.shields.io/badge/License-Apache-green.svg)](https://choosealicense.com/licenses/apache/)
 ![Docker Image Version](https://img.shields.io/docker/v/sxmxc/ssl_checker_api)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/sxmxc)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/sxmxc/ssl_checker_api)
 
 
-**Built using:**
+**Built with**
+
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009485.svg?logo=fastapi&logoColor=white)](#)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
