@@ -12,13 +12,9 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009485.svg?logo=fastapi&logoColor=white)](#)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
 
-
-
-
 # SSL Checker API
 
 SSL Checker API is a simple FastAPI-based service that provides SSL certificate validation for any given host. It acts as a RESTful wrapper around the [ssl-checker](https://github.com/narbehaj/ssl-checker) Python script, making it easy to integrate SSL certificate checks into your applications.
-
 
 ## Features  
 
@@ -27,35 +23,39 @@ SSL Checker API is a simple FastAPI-based service that provides SSL certificate 
 - **Fast & Lightweight**: Built using FastAPI for high performance and easy scalability.  
 - **JSON Response**: Structured output for seamless integration with other applications.  
 
-
 ## Installation
 
-**1. Clone the repository**
+### Clone the repository
+
 ```bash
   git clone https://github.com/sxmxc/ssl-checker-api.git  
   cd ssl-checker-api  
 
 ```
 
-**2. Install dependencies**
+## 2. Install dependencies
+
 ```bash
   pip install -r requirements.txt
 ```
 
-**3. Run the API**
+## 3. Run the API
+
 ```bash
   python app/main.py 
 ```
 
-**4. Access API documentation**
-- Open http://localhost:8000/docs for interactive Swagger UI.
-- Open http://localhost:8000/redoc for ReDoc API documentation.
-    
+## 4. Access API documentation
+
+- Open <http://localhost:8000/docs> for interactive Swagger UI.
+- Open <http://localhost:8000/redoc> for ReDoc API documentation.
+
 ## Deployment
 
 To run as a docker container:
 
-**Build locally**
+### Build locally
+
 ```bash
   git clone https://github.com/sxmxc/ssl-checker-api.git  
   cd ssl-checker-api  
@@ -63,7 +63,8 @@ To run as a docker container:
   docker run -d --name ssl_checker_api -p 8000:8000 <image name>:<tag>
 ```
 
-**Via DockerHub**
+## Via DockerHub
+
 ```bash
   docker run -d --name ssl_checker_api -p 8000:8000 sxmxc/ssl_checker_api
 ```
@@ -75,7 +76,8 @@ To run as a docker container:
 **GET `/ping`**  
 Returns a basic health check response to confirm the API is operational.  
 
-#### Response:
+**Response:**
+
 ```json
 {
   "dang_ol": "pong",
@@ -90,9 +92,11 @@ Returns a basic health check response to confirm the API is operational.
 Fetches SSL certificate details for the given host.
 
 **Parameters:**
+
 - `host` (string, required): The domain name of the URL to check
 
-#### Response:
+**Response:**
+
 ```json
 {
   "api-version": "1",
@@ -108,19 +112,18 @@ Fetches SSL certificate details for the given host.
   }
 }
 ```
+
 ## Environment Variables
 
 The following environment variables can be used:
 
 | **Variable** | **Default**       | **Description**
-|------------------|-------------------|-------------------|
-| `API_NAME`         | "SSL Checker API" | Name of the API |
-| `API_HOST`         | "0.0.0.0"         | IP to listen on |
-| `API_PORT`         | 8000              | Port to listen on |
-| `API_VERSION`      | "1"               | API version |
-
+|------------------|-------------------|-------------------
+| `API_NAME`         | "SSL Checker API" | Name of the API
+| `API_HOST`         | "0.0.0.0"         | IP to listen on
+| `API_PORT`         | 8000              | Port to listen on
+| `API_VERSION`      | "1"               | API version
 
 ## License
 
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
-
